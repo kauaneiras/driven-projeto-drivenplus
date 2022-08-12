@@ -1,0 +1,114 @@
+//Para cadastro: POST para a URL
+const AXIOSSIGNUP = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up";
+
+/*{
+	email: "fulano@email.com",
+	name: "Fulano",
+	cpf: "111.111.111-11",
+	password: "123"
+} */
+
+//Para fazer login: POST para a URL
+export const AXIOSLOGIN = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login";
+
+/*{
+	email: "...",
+	password: "..."
+} */
+
+
+//RESPOSTA SERVIDOR
+/*{
+    "id": 3,
+    "name": "Fulano",
+    "cpf": "111.111.111-11",
+    "email": "fulano@email.com.br",
+    "password": "123456",
+		"membership": { // se o usuário não tiver assinado um plano, será null
+		    "id": 1,
+		    "name": "Driven Plus",
+		    "image": "https://svgshare.com/i/dSP.svg",
+		    "price": "39.99",
+		    "perks": [
+		        {
+		            "id": 1,
+		            "membershipId": 1,
+		            "title": "Solicitar brindes",
+		            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+		        },
+		        {
+		            "id": 2,
+		            "membershipId": 1,
+		            "title": "Materiais bônus de web",
+		            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+		        }
+		    ]
+		},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjIxMjg0NzExfQ.b8e3bYm7TnU5p6pfrCPPbzboax6gvh_gGNFR4T51FxY"
+}*/
+
+//Lista de planos GET
+const AXIOSMEMBERSHIP = "https://mock-api.driven.com.br/api/v4/driven-plus/membership";
+/*[
+    {
+        "id": 1,
+        "image": "https://svgshare.com/i/dSP.svg",
+        "price": "39.99"
+    },
+    ...
+] */
+
+//Listar um plano especifico GET
+const IDPLANO = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO"
+
+/*{
+    "id": 1,
+    "name": "Driven Plus",
+    "image": "https://svgshare.com/i/dSP.svg",
+    "price": "39.99",
+    "perks": [
+        {
+            "id": 1,
+            "membershipId": 1,
+            "title": "Solicitar brindes",
+            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "id": 2,
+            "membershipId": 1,
+            "title": "Materiais bônus de web",
+            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+    ]
+} */
+
+const AXIOSSUBSCRIPTIONS = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions";
+/*
+{
+    membershipId: 1,
+    cardName: "Fulano Da Silva",
+    cardNumber: "1234 1234 1234 1234",
+    securityNumber: 123,
+    expirationDate: "01/28"
+} 
+*/
+/*{
+    "id": 1,
+    "name": "Driven Plus",
+    "image": "https://svgshare.com/i/dSP.svg",
+    "price": "39.99",
+    "perks": [
+        {
+            "id": 1,
+            "membershipId": 1,
+            "title": "Solicitar brindes",
+            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "id": 2,
+            "membershipId": 1,
+            "title": "Materiais bônus de web",
+            "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+    ]
+} */

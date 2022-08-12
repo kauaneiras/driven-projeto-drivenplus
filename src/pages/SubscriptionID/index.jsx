@@ -1,4 +1,4 @@
-export default function Home() {
+export default function SubscriptionID() {
     return (
         <div>
             <h1>Home</h1>

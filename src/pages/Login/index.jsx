@@ -1,6 +1,37 @@
+import {Link} from "react-router-dom";
+import ImgLogo from "../../Images/Logo.png";
 import styled from 'styled-components';
 
+export default function Login() {
+    console.log("Login => OK");
 
+    return (
+        <Container>
+            <Center>
+                <Logo src={ImgLogo} alt="" />
+                <Form>
+                    <Input  type="email" placeholder="email" />
+                    <Input type="password" placeholder="senha" />
+                <Button type="submit">
+                    <RenderButton  text="Entrar"/>
+                </Button>
+                </Form >
+                    <Link to="/signup">
+                        <GoTo>Não tem uma conta? Cadastre-se!</GoTo>
+                    </Link>
+            </Center>
+        </Container>
+    )
+
+}
+
+const RenderButton = styled.button`
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: pink;
+`
+    
 const Container = styled.div`
     position: relative;
     background: #0E0E13;
@@ -18,8 +49,15 @@ const Center = styled.div`
     justify-content: center;
 `
 const Logo = styled.img`
+    margin-bottom: 100px;
     width: 100%;
     height: auto;
+`
+const Form = styled.form
+`   width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `
 
 const Input = styled.input`
@@ -49,5 +87,16 @@ const Button = styled.button`
     font-size: 14px;
     font-weight: 700;
     line-height: 16.41 px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 `
-
+const GoTo = styled.p
+`   color: #52B6FF;
+    margin-top: 20px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+    text-decoration: underline;
+`
