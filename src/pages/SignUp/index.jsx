@@ -18,7 +18,7 @@ export default function SignUp() {
                     <RenderButton  text="Entrar"/>
                 </Button>
                 </Form >
-                    <Link to="/signup">
+                    <Link to="/sign-up">
                         <GoTo>Não tem uma conta? Cadastre-se!</GoTo>
                     </Link>
             </Center>
