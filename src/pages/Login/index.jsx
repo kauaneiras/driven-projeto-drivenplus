@@ -38,9 +38,9 @@ export default function Login(){
 
     }
 
-    function disable(action){
+    function disable(a){
         if(disabled){return () => "";}
-        else{return action;}
+        else{return a;}
     }
 
     return (

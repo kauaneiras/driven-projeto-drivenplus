@@ -1,4 +1,5 @@
 import { ThreeDots } from 'react-loader-spinner'
+import styled from 'styled-components';
 
 export default function RenderButton(props) {
     const { state, text } = props;
@@ -11,5 +12,16 @@ export default function RenderButton(props) {
 }
 
 function Loading() {
-    return (<ThreeDots color="white" height={80}width={80} />)
+    return (
+        <Buttoncenter>
+        <ThreeDots color="white" height={80}width={80}/>
+        </Buttoncenter>
+        )
 }
+
+const Buttoncenter = styled.div`
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+`
+
