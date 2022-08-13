@@ -1,4 +1,4 @@
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import LogoDriven from "../../Images/Logo.png";
 import styled from 'styled-components';
@@ -31,12 +31,8 @@ export default function Login(){
             else{navigate("/subscriptions")}
         })
 
-        promise.catch(error => {
-            const erros = []
-            if (error.response.data.datails){
-                error.response.data.details.map(erro => erros.push(erro))}
-            else{erros.push(error.response.data.message)}
-            alert("Email ou senha inválido, por favor, tente novamente")
+        promise.catch((warning) => {
+            alert("Algo deu errado. Não foi possível realizar seu login. Por favor, tente novamente.");
             setDisabled(false);
         })
 
