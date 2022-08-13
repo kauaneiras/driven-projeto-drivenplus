@@ -1,36 +1,70 @@
-import {Link} from "react-router-dom";
-import ImgLogo from "../../Images/Logo.png";
+import {Link, useNavigate} from "react-router-dom";
+import { useState, useContext } from 'react';
+import LogoDriven from "../../Images/Logo.png";
 import styled from 'styled-components';
+import axios from 'axios';
+import RenderButton from "../../componets/RenderButton";
+import LoginData from "../../Contexts";
 
-export default function Login() {
-    console.log("Login => OK");
+
+export default function Login(){
+
+    const {setToken, setName, setPlan} = useContext(LoginData);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [disabled, setDisabled] = useState(false);
+
+    const navigate = useNavigate();
+
+    function OnSubmit(){
+
+        setDisabled(true);
+        const promise = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/login', {email: email, password: password});
+        promise.then(response => {
+            console.log(`post login sucess email: ${email} password: ${password}`);
+            setDisabled(false);
+            setName(response.data.name);
+            setToken(response.data.token);
+            if(response.data.membership){
+                setPlan(response.data.membership);
+                navigate("/home");}
+            else{navigate("/subscriptions")}
+        })
+
+        promise.catch(error => {
+            const erros = []
+            if (error.response.data.datails){
+                error.response.data.details.map(erro => erros.push(erro))}
+            else{erros.push(error.response.data.message)}
+            alert("Email ou senha inválido, por favor, tente novamente")
+            setDisabled(false);
+        })
+
+    }
+
+    function disable(action){
+        if(disabled){return () => "";}
+        else{return action;}
+    }
 
     return (
         <Container>
             <Center>
-                <Logo src={ImgLogo} alt="" />
-                <Form>
-                    <Input  type="email" placeholder="email" />
-                    <Input type="password" placeholder="senha" />
-                <Button type="submit">
-                    <RenderButton  text="Entrar"/>
+                <Logo src={LogoDriven} alt="" />
+                <Form onSubmit={OnSubmit}>
+                    <Input disabled={disabled} type="email" placeholder="email" value={email} required onChange={disable((e) => setEmail(e.target.value))}/>
+                    <Input disabled={disabled} type="password" placeholder="password" value={password} required onChange={disable((e) => setPassword(e.target.value))}/>
+                <Button disabled={disabled} type="submit">
+                    <RenderButton state={disabled} text="Entrar"/>
                 </Button>
                 </Form >
-                    <Link to="/signup">
+                    <Link to="/sign-up">
                         <GoTo>Não tem uma conta? Cadastre-se!</GoTo>
                     </Link>
             </Center>
         </Container>
     )
-
 }
-
-const RenderButton = styled.button`
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-    background-color: pink;
-`
     
 const Container = styled.div`
     position: relative;
@@ -53,13 +87,12 @@ const Logo = styled.img`
     width: 100%;
     height: auto;
 `
-const Form = styled.form
-`   width: 100%;
+const Form = styled.form`   
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 `
-
 const Input = styled.input`
     width: 100%;
     height: 40px;
@@ -90,8 +123,8 @@ const Button = styled.button`
     margin-top: 24px;
     margin-bottom: 24px;
 `
-const GoTo = styled.p
-`   color: #52B6FF;
+const GoTo = styled.p`   
+    color: #52B6FF;
     margin-top: 20px;
     font-size: 15px;
     font-style: normal;

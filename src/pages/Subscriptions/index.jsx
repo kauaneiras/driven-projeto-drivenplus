@@ -25,7 +25,6 @@ export default function Subscriptions() {
             </Center>
         </Container>
     )
-
 }
 
 const Container = styled.div`
